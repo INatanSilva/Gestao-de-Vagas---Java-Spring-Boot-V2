@@ -19,30 +19,12 @@ public class SecutiryConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-<<<<<<< HEAD
-<<<<<<< HEAD
             .authorizeHttpRequests(auth -> {
                  auth.requestMatchers("/candidate/**").permitAll()
                      .requestMatchers("/companies/**").permitAll()
                      .requestMatchers("/auth/companies").permitAll();
                  auth.anyRequest().authenticated();
             }).addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
-=======
-=======
->>>>>>> origin/main
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/candidate/").permitAll()
-                .requestMatchers("/companies/").permitAll()
-                .requestMatchers("/auth/companies").permitAll()
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
-
-            ;
-<<<<<<< HEAD
->>>>>>> origin/main
-=======
->>>>>>> origin/main
             
         return http.build();
     }
