@@ -11,7 +11,10 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 public class SecutiryConfig {
-    
+
+    @Autowired
+    private SecurityCandidateFilter securityCandidateFilter;
+
     @Autowired
     private SecurityFilter securityFilter;
 
@@ -24,7 +27,9 @@ public class SecutiryConfig {
                      .requestMatchers("/companies/**").permitAll()
                      .requestMatchers("/auth/companies").permitAll();
                  auth.anyRequest().authenticated();
-            }).addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
+            }).addFilterBefore(securityCandidateFilter, BasicAuthenticationFilter.class)
+                .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
+
             
         return http.build();
     }
